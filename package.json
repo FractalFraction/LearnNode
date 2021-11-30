@@ -1,13 +1,18 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
   },
   "name": "learnnode",
   "description": "LearnNode A project to learn the fundamentals of backend development using Node.js",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress": "^9.1.0",
+    "jest": "^27.4.2"
+  },
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
