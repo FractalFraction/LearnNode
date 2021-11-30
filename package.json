@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "name": "learnnode",
+  "description": "LearnNode A project to learn the fundamentals of backend development using Node.js",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FractalFraction/LearnNode.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "mongodb"
+  ],
+  "author": "Colin Gardiner",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/FractalFraction/LearnNode/issues"
+  },
+  "homepage": "https://github.com/FractalFraction/LearnNode#readme"
+}
