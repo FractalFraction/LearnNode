@@ -22,7 +22,10 @@ require('dotenv').config({path: '../../.env'})
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  config.baseUrl = `http://localhost:${process.env.APP_PORT}`
+  //config.baseUrl = `http://localhost:${process.env.APP_PORT}`
+
+  config.baseUrl = `http://localhost:3000`
+
   // Return the changed config
   return config
 }

@@ -1,0 +1,69 @@
+doctype html
+html 
+  head 
+    title Firestones - #{title}
+    script(src="https://kit.fontawesome.com/09914ce8a3.js" crossorigin="anonymous")
+    link(href='/static/style.css' rel='stylesheet')
+
+    //- Additional Scripts that can be appended per page
+    block scripts
+
+    //- Reusuable functions/components that can be used in the pug   
+    mixin icontext(text, iconclass, spanclass="")
+      span()(class= spanclass)
+        |#{pretext}
+        | 
+        i(class= iconclass)
+        |  
+        |#{text}
+
+    mixin link(href, text, iconclass="")
+      if iconclass === ""
+        a(href=href)= text
+      else 
+        a(href=href) 
+          +icontext(text, iconclass)
+        
+    mixin link-container(linkhref, linktext, myclass="link-container black", iconclass="")
+      li()(class= myclass)
+        +link(linkhref, linktext, iconclass)
+
+    mixin figwithcap(figclass, iconclass, text)
+      figure()(class=figclass)
+        i()(class=iconclass)
+        figcaption= text
+    
+  body 
+    header 
+      div(data-cy="banner" class="banner")
+        span 
+          |We 
+          |
+          i(class="far fa-heart") 
+          |
+          |readers!!
+      nav(data-cy="top-navbar" class="top-navbar")
+        div(class="left-icons-container")
+          -var data = [{figclass: "blue", iconclass: "fas fa-bars", text: "Menu"}, {figclass: "black", iconclass: "fas fa-map-marker-alt", text: "Shops"} ]
+           each datum in data
+            +figwithcap(datum.figclass, datum.iconclass, datum.text)
+        +icontext("Firestones","fas fa-book-open fa-xs", "logo-container gold")
+        div(class="right-icons-container")
+          -var data = [{figclass: "blue", iconclass: "fas fa-search", text: "Search"}, {figclass: "black", iconclass: "fas fa-shopping-basket", text: "Basket"} ]
+           each datum in data
+            +figwithcap(datum.figclass, datum.iconclass, datum.text)
+      nav(data-cy="bottom-navbar" class="bottom-navbar") 
+        ul(class="left-links-container")
+          -var data = [{link: "/help", text: "Help"}, {link: "/events", text: "Events"},{link: "/blog", text: 'Blog'},{link: "/podcast", text: 'Podcast'}]
+          each datum in data
+            +link-container(datum.link, datum.text)
+        ul(class="right-links-container")
+          -var data = [{link: "/login", text: "Sign In / Register", class: "link-container black", iconclass: "fas fa-user smallicon gold"}, {link: "/plus", text: "Plus", class: "link-container green fancy", iconclass: ""}, {link: "/list", text: "Wish List", class: "link-container black", iconclass: "fas fa-heart smallicon gold"}]
+          each datum in data
+            +link-container(datum.link, datum.text, datum.class, datum.iconclass)
+
+    block content
+
+    block footer
+      footer 
+        p Site Footer
