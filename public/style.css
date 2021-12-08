@@ -84,6 +84,8 @@ ul {
   padding: 0;
 }
 
+
+
 .banner {
   padding: 4px;
   color: var(--lightgold);
@@ -201,3 +203,5 @@ ul {
   font-weight: 500;
   font-style: italic;
 }
+
+

@@ -1,13 +1,13 @@
 doctype html
 html 
   head 
-    title Firestones - #{title}
-    script(src="https://kit.fontawesome.com/09914ce8a3.js" crossorigin="anonymous")
-    link(href='/static/style.css' rel='stylesheet')
-
-    //- Additional Scripts that can be appended per page
+    title Firestones
+    //- Additional Scripts can be appended per page
     block scripts
-
+      script(src="https://kit.fontawesome.com/09914ce8a3.js" crossorigin="anonymous")
+    //- Style Sheets
+    block styles
+      link(href='/static/style.css' rel='stylesheet')
     //- Reusuable functions/components that can be used in the pug   
     mixin icontext(text, iconclass, spanclass="")
       span()(class= spanclass)

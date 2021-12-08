@@ -14,10 +14,10 @@ app.set("views", "./views")
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 // Send some text to the index page
-app.get("/", (req, res) => {
-  //res.send("Hello, Colin!")
-  res.render("index", {title: "App", message: "Hello World"})
-})
+// app.get("/", (req, res) => {
+//   //res.send("Hello, Colin!")
+//   res.render("index", {title: "App", message: "Hello World"})
+// })
 
 // Message to log when server starts running
 app.listen(port, () => {
@@ -31,6 +31,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${proce
 // Create a new MongoClient
 const client = new MongoClient(uri)
 
+let bookData = [];
+
 async function run() {
   try {
     // Connect the client to the server
@@ -38,6 +40,20 @@ async function run() {
     // Establish and verify a connection
     await client.db("admin").command({ping: 1})
     console.log("Connected sucessfully to MongoDB server")
+
+    // Perform a simple findOne query
+    //bookData = await client.db(process.env.DB_COLLECTION_NAME).collection('books').findOne({'title': 'Jane Eyre'})
+    // Find Query 
+    // The Find Query from Mongo Compass returns a FindCursor iterable
+    const bookDataCursor = await client.db(process.env.DB_COLLECTION_NAME).collection('books').find({'title': {'$exists': true}}).sort({'title': 1})
+    
+    await bookDataCursor.forEach(doc => 
+        bookData.push(doc)
+      )
+
+    // Call a middleware function to display this info to the page
+
+
   } finally {
     // Ensure the client closes when you finish or error
       await client.close();
@@ -45,3 +61,11 @@ async function run() {
 }
 
 run().catch(console.dir);
+
+
+// Send some text to the index page
+app.get("/", (req, res) => {
+  //res.send("Hello, Colin!")
+  console.log(bookData)
+  res.render("bookshelf", {bookData})
+})

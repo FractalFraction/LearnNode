@@ -1,0 +1,44 @@
+extends layout.pug 
+
+mixin bookaisle
+
+block append styles
+  link(href='/static/bookshelf.css' rel='stylesheet')
+
+block content
+  var- myBookData= bookData
+  h1#message= message
+  //- Store the data array returned from the get request
+  //- Iterate over each object in the array using each 
+  //- book data is returned from GET request
+  div.bookshelf
+    div.bookaisle
+      each book in myBookData
+        div.book
+          div.image-wrap 
+            img(src="/static/book.svg", alt="book", class="bookcover")
+          div.description
+            p#title #{book.title}
+            p#author By: #{book.author} 
+            p#price Price: #{book.price} 
+            if book.amount >= 10
+              p#amount In Stock
+            else if book.amount > 0
+              p#amount Running Low - Only #{book.amount} remaining!
+            else 
+              p#amount Out of Stock   
+    div.bookaisle
+      each book in myBookData
+        div.book
+          div.image-wrap 
+            img(src="/static/book.svg", alt="book", class="bookcover")
+          div.description
+            p#title #{book.title}
+            p#author By: #{book.author} 
+            p#price Price: #{book.price} 
+            if book.amount >= 10
+              p#amount In Stock
+            else if book.amount > 0
+              p#amount Running Low - Only #{book.amount} remaining!
+            else 
+              p#amount Out of Stock  
